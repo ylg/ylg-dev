@@ -1,0 +1,220 @@
+:root {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", monospace;
+  color-scheme: light dark;
+
+  --blood-orange: oklch(0.5 0.15 30);
+  --navy-blue: oklch(0.1 0.033 270);
+  --navy: oklch(0.3 0.01 270);
+  --rusty-red: oklch(0.51 0.1047 27.47);
+  --scrub: oklch(0.8 0.03 80);
+  --warm-yellow: oklch(0.84 0.1033 84.92);
+
+  --color-background: light-dark(var(--scrub), var(--navy-blue));
+  --color-text-low: light-dark(var(--navy), var(--rusty-red));
+  --color-text-high: light-dark(var(--blood-orange), var(--warm-yellow));
+
+  --color-background: var(--scrub);
+  --color-text-low: var(--navy);
+  --color-text-high: var(--blood-orange);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--navy-blue);
+    --color-text-low: var(--rusty-red);
+    --color-text-high: var(--warm-yellow);
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-low);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text-low);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 2rem 0;
+  }
+}
+
+.description,
+.links {
+  font-family: ui-sans-serif, "SF Pro", "Cascadia", sans-serif;
+  font-size: 1.1rem;
+}
+
+.email-link {
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+
+.email-at,
+.email-tld {
+  color: var(--color-text-low);
+  font-weight: lighter;
+}
+
+.email-hello,
+.email-domain {
+  color: var(--color-text-high);
+}
+
+@media (max-width: 764px) {
+  .description {
+    text-align: center;
+    width: 100%;
+  }
+
+  .email-link {
+    margin: 2rem;
+  }
+
+  .links {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 765px) {
+
+  .description,
+  .email-link,
+  .links {
+    font-size: 1.5rem;
+    position: absolute;
+    transition: var(--slow-transition);
+  }
+
+  .description {
+    left: 50%;
+    top: calc(50% - 19rem);
+    opacity: var(--faded);
+  }
+
+  .email-link {
+    font-size: 4rem;
+    padding: 3rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+
+    white-space: nowrap;
+  }
+
+  .links {
+    left: calc(50% - 1rem);
+    top: calc(50% + 5rem);
+  }
+}
+
+@media (any-hover: hover) {
+  :root {
+    --fast-transition: 0.2s ease;
+    --slow-transition: 0.5s ease;
+
+    --faded: 0.2;
+    --deemphasized: 0.5;
+    --focus: 1;
+  }
+
+  .email-link {
+
+    .email-at,
+    .email-hello {
+      color: var(--color-text-low);
+      opacity: var(--faded);
+      transition: var(--slow-transition);
+    }
+
+    &:hover {
+
+      .email-at,
+      .email-hello {
+        opacity: var(--focus);
+      }
+
+      .email-hello {
+        color: var(--color-text-high);
+      }
+    }
+  }
+
+  .description,
+  .links {
+    a {
+      opacity: var(--deemphasized);
+
+      &:hover {
+        opacity: var(--focus);
+
+        .emphasis {
+          color: var(--color-text-high);
+        }
+      }
+
+      .emphasis {
+        color: var(--color-text-low);
+      }
+    }
+  }
+
+  .description {
+    opacity: var(--deemphasized);
+
+    &:hover {
+      opacity: var(--focus);
+    }
+  }
+}
+
+/* Start Chrome background rendering bugs (split and flicker) */
+@supports selector(::-internal-media-controls-overlay-cast-button) {
+  html {
+    height: 100%;
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+
+  body {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .description,
+  .links {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .email-link {
+    backface-visibility: hidden;
+  }
+
+  * {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  @media (min-width: 765px) {
+    .email-link {
+      transform: translate(-50%, -50%) translateZ(0);
+    }
+  }
+}
+
+/* End Chrome background rendering bug */
