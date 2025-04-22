@@ -81,6 +81,12 @@ ul {
 }
 
 @media (max-width: 764px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+  }
   .services {
     text-align: center;
     width: 100%;
