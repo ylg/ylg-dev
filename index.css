@@ -53,14 +53,12 @@ body {
   background-color: var(--color-background);
   color: var(--color-text-low);
   margin: 0;
-  min-height: 100%;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
   min-height: 100svh;
 }
 
@@ -73,26 +71,34 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-
-  li {
-    margin: 0;
-  }
 }
 
-.services,
-.links {
-  font-family: var(--font-text);
-  font-size: 1.1rem;
-  transition: var(--slow-transition);
+.email-link {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.email-at,
+.email-tld {
+  opacity: var(--opacity-low);
+  font-weight: 200;
+}
+
+.emphasis,
+.email-hello,
+.email-domain {
+  color: var(--color-text-high);
 }
 
 .link a {
   display: block;
-  padding: 0.6rem 0;
+  padding-block: 0.6rem;
 }
 
-.service {
-  padding: 0.6rem 0;
+.links,
+.services {
+  font-family: var(--font-text);
+  font-size: 1.1rem;
 }
 
 .lowast {
@@ -103,22 +109,8 @@ ul {
   line-height: 1rem;
 }
 
-.email-link {
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-.email-at,
-.email-tld {
-  color: var(--color-text-low);
-  opacity: var(--opacity-low);
-  font-weight: 200;
-}
-
-.emphasis,
-.email-hello,
-.email-domain {
-  color: var(--color-text-high);
+.service {
+  padding-block: 0.6rem;
 }
 
 .pgp {
@@ -148,28 +140,41 @@ ul {
   main {
     justify-content: center;
   }
-  .services {
-    text-align: center;
-    width: 100%;
-  }
-
-  .service {
-    padding: 0.6rem 0;
-  }
 
   .email-link {
     padding: 1.4rem 2rem 0.5rem;
   }
 
   .pgp {
-    margin: 1rem 0;
+    margin-block: 1rem;
+  }
+
+  .services {
+    text-align: center;
+    width: 100%;
   }
 }
 
-@media (width >= 765px) and (height >= 25rem) {
+@media (width >=765px) and (height >=25rem) {
 
-  .services,
+  .email-link {
+    font-size: 4rem;
+    padding: 3rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+
+    white-space: nowrap;
+  }
+
   .links {
+    left: calc(50% - 1rem);
+    top: calc(50% + 6rem);
+  }
+
+  .links,
+  .services {
     font-family: var(--font-display);
     font-size: 1.5rem;
     position: absolute;
@@ -181,29 +186,12 @@ ul {
     white-space: nowrap;
   }
 
-  .email-link {
-    font-size: 4rem;
-    padding: 3rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    will-change: transform;
-
-    white-space: nowrap;
-  }
-
   .pgp {
     position: absolute;
     left: 50%;
     top: calc(50% + 3rem);
-    transform: translateX(-50%);
+    translate: -50%;
     white-space: nowrap;
-  }
-
-  .links {
-    left: calc(50% - 1rem);
-    top: calc(50% + 6rem);
   }
 }
 
@@ -213,53 +201,51 @@ ul {
     .email-hello {
       color: var(--color-text-low);
       opacity: var(--opacity-mid);
-      transition: var(--slow-transition);
+      transition: color var(--slow-transition), opacity var(--slow-transition);
     }
 
-    &:hover,
-    &:focus-visible {
-      .email-hello {
+    &:is(:hover, :focus-visible) .email-hello {
+      color: var(--color-text-high);
+      opacity: var(--opacity-high);
+    }
+  }
+
+  .emphasis {
+    color: var(--color-text-low);
+    transition: color var(--slow-transition);
+  }
+
+  .links a {
+    opacity: var(--opacity-mid);
+    transition: opacity var(--slow-transition);
+
+    &:is(:hover, :focus-visible) {
+      opacity: var(--opacity-high);
+
+      .emphasis {
         color: var(--color-text-high);
-        opacity: var(--opacity-high);
       }
     }
   }
 
   .pgp {
-    transition: var(--slow-transition);
+    transition: opacity var(--slow-transition);
 
-    &:hover,
-    &:focus-visible {
+    &:hover {
       opacity: var(--opacity-high);
     }
-  }
-
-  .services,
-  .links {
-    a {
-      opacity: var(--opacity-mid);
-
-      &:hover,
-      &:focus-visible {
-        opacity: var(--opacity-high);
-      }
-    }
-  }
-  .emphasis {
-    color: var(--color-text-low);
-  }
-
-  .services ul:hover .emphasis,
-  .link:hover .emphasis,
-  .link a:focus-visible .emphasis {
-    color: var(--color-text-high);
   }
 
   .services {
     opacity: var(--opacity-mid);
+    transition: opacity var(--slow-transition);
 
     &:hover {
       opacity: var(--opacity-high);
+
+      .emphasis {
+        color: var(--color-text-high);
+      }
     }
   }
 }
