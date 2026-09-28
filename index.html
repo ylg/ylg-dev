@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -11,32 +11,34 @@
   <meta property="og:title" content="ylg.dev">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ylg.dev">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
 
-  <meta name="theme-color" content="#b7ac98" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="oklch(0.3 0.0364 256.91)" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="oklch(0.748 0.031 82.6)" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="oklch(0.25 0.03 257)" media="(prefers-color-scheme: dark)">
 
   <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <div class="services">
-    <ul>
-      <li class="service"><span class="emphasis">human</span> development &lowast; llm tooling</li>
-      <li class="service"><span class="emphasis">rust</span>, typescript, python, julia, elixir, sql</li>
-    </ul>
-  </div>
-  <a href="mailto:hello@ylg.dev" class="email-link" aria-label="Send email to hello@ylg.dev" >
-    <span class="email-hello">hello</span><span class="email-at">@</span><span class="email-domain">ylg</span><span class="email-tld">.dev</span>
-  </a>
-  <a href="key.asc" class="gpg-fingerprint" aria-label="OpenPGP public key"><span>0ACA 751B 43F5 0533 6E09</span> <span>503E 13E7 4C01 5753 14AC</span></a>
-  <div class="links">
-    <ul>
-      <li class="link"><a href="https://sensedata.com">@ sense<span class="emphasis">data</span></a></li>
-      <li class="link"><a href="https://github.com/ylg">@ github</a></li>
-    </ul>
-  </div>
+  <main>
+    <h1 class="sr-only">yuri gadow</h1>
+    <div class="services">
+      <ul role="list">
+        <li class="service">bespoke software products</li>
+        <li class="service"><span class="emphasis">human</span> development &lowast; llm tooling</li>
+        <li class="service">rust, typescript, python, julia, elixir, sql</li>
+      </ul>
+    </div>
+    <a href="mailto:hello@ylg.dev" class="email-link" aria-label="Send email to hello@ylg.dev" >
+      <span class="email-hello">hello</span><span class="email-at">@</span><span class="email-domain">ylg</span><span class="email-tld">.dev</span>
+    </a>
+    <a href="key.asc" class="gpg"><span class="sr-only">OpenPGP fingerprint </span><span class="fingerprint">0ACA 751B 43F5 0533 6E09</span> <span class="fingerprint">503E 13E7 4C01 5753 14AC</span></a>
+    <nav class="links" aria-label="Elsewhere">
+      <ul role="list">
+        <li class="link"><a href="https://sensedata.com">@ sense<span class="emphasis">data</span></a></li>
+        <li class="link"><a href="https://github.com/ylg">@ github</a></li>
+      </ul>
+    </nav>
+  </main>
 </body>
 
 </html>

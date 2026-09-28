@@ -1,36 +1,49 @@
 :root {
-  font-family: ui-monospace, "SF Mono", "Cascadia Mono", monospace;
   color-scheme: light dark;
+
+  font-family: "SF Mono", "Cascadia Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-display: "SF Pro Display", "Segoe UI Variable Display", system-ui, ui-sans-serif, sans-serif;
+  --font-text: "SF Pro Text", "Segoe UI Variable Text", system-ui, ui-sans-serif, sans-serif;
 
   --blood-orange: oklch(0.5 0.15 30);
   --navy: oklch(0.3 0.01 270);
   --scrub: oklch(0.8 0.03 80);
 
-  --cloud: oklch(0.70 0.0234 347.65);
-  --evening: oklch(0.18 0.0364 256.91);
-  --stormy: oklch(0.50 0.0484 276.6);
+  --night: oklch(0.20 0.03 257);
+  --frost: oklch(0.82 0.02 250);
+  --ember-light: oklch(0.74 0.13 40);
 
   --color-background: var(--scrub);
   --color-text-low: var(--navy);
   --color-text-high: var(--blood-orange);
+
+  --opacity-low: 0.8;
+  --opacity-high: 1;
+
+  --slow-transition: 0.5s ease;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--evening);
-    --color-text-low: var(--stormy);
-    --color-text-high: var(--cloud);
+    --color-background: var(--night);
+    --color-text-low: var(--frost);
+    --color-text-high: var(--ember-light);
   }
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-text-low);
+  margin: 0;
+  min-height: 100%;
+}
+
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 a {
@@ -50,7 +63,7 @@ ul {
 
 .services,
 .links {
-  font-family: ui-sans-serif, "SF Pro Text", "Cascadia", sans-serif;
+  font-family: var(--font-text);
   font-size: 1.1rem;
   transition: var(--slow-transition);
 }
@@ -75,52 +88,65 @@ ul {
   font-weight: lighter;
 }
 
-.gpg-fingerprint {
-  font-size: 0.75rem;
-  text-align: center;
-
-  span {
-    display: inline-block;
-    white-space: pre;
-  }
-}
-
 .email-hello,
 .email-domain {
   color: var(--color-text-high);
 }
 
-@media (max-width: 764px) {
-  body {
-    display: flex;
-    flex-direction: column;
+.gpg {
+  font-size: 0.75rem;
+  text-align: center;
+
+  .fingerprint {
+    display: inline-block;
+    white-space: pre;
+  }
+}
+
+.sr-only {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (width < 765px) or (height < 25rem) {
+  main {
     justify-content: center;
-    min-height: 100vh;
   }
   .services {
     text-align: center;
     width: 100%;
   }
 
+  .service {
+    padding: 0.6rem 0;
+  }
+
   .email-link {
-    padding: 2rem;
+    padding: 1.4rem 2rem 0.5rem;
+  }
+
+  .gpg {
+    margin-bottom: 1.4rem;
   }
 }
 
-@media (min-width: 765px) {
+@media (width >= 765px) and (height >= 25rem) {
 
   .services,
   .links {
-    font-family: ui-sans-serif, "SF Pro Display", "Cascadia", sans-serif;
+    font-family: var(--font-display);
     font-size: 1.5rem;
     position: absolute;
-    transition: var(--slow-transition);
   }
 
   .services {
     left: 50%;
-    top: calc(50% - 11rem);
-    opacity: var(--opacity-low);
+    top: calc(50% - 14rem);
+    white-space: nowrap;
   }
 
   .email-link {
@@ -135,7 +161,7 @@ ul {
     white-space: nowrap;
   }
 
-  .gpg-fingerprint {
+  .gpg {
     position: absolute;
     left: 50%;
     top: calc(50% + 3rem);
@@ -150,13 +176,6 @@ ul {
 }
 
 @media (any-hover: hover) {
-  :root {
-    --slow-transition: 0.5s ease;
-
-    --opacity-low: 0.5;
-    --opacity-high: 1;
-  }
-
   .email-link {
 
     .email-at,
@@ -166,7 +185,8 @@ ul {
       transition: var(--slow-transition);
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
 
       .email-at,
       .email-hello {
@@ -179,11 +199,12 @@ ul {
     }
   }
 
-  .gpg-fingerprint {
+  .gpg {
     opacity: var(--opacity-low);
     transition: var(--slow-transition);
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       opacity: var(--opacity-high);
     }
   }
@@ -193,12 +214,15 @@ ul {
     a {
       opacity: var(--opacity-low);
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         opacity: var(--opacity-high);
       }
     }
   }
-  .link:hover .emphasis {
+  .services ul:hover .emphasis,
+  .link:hover .emphasis,
+  .link a:focus-visible .emphasis {
     color: var(--color-text-high);
   }
 
@@ -210,40 +234,3 @@ ul {
     }
   }
 }
-
-/* Start Chrome background rendering bugs (split and flicker) */
-@supports selector(::-internal-media-controls-overlay-cast-button) {
-  html {
-    height: 100%;
-    backface-visibility: hidden;
-    perspective: 1000;
-  }
-
-  body {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  .services,
-  .links {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  .email-link {
-    backface-visibility: hidden;
-  }
-
-  * {
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-  }
-
-  @media (min-width: 765px) {
-    .email-link {
-      transform: translate(-50%, -50%) translateZ(0);
-    }
-  }
-}
-
-/* End Chrome background rendering bug */
