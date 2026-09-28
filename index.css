@@ -104,9 +104,13 @@ ul {
   color: var(--color-text-high);
 }
 
-.gpg {
+.pgp {
   font-size: 0.75rem;
+  margin-top: 0.5rem;
+  opacity: var(--opacity-mid);
   text-align: center;
+  -webkit-user-select: all;
+  user-select: all;
 
   .fingerprint {
     display: inline-block;
@@ -140,8 +144,8 @@ ul {
     padding: 1.4rem 2rem 0.5rem;
   }
 
-  .gpg {
-    margin-bottom: 1.4rem;
+  .pgp {
+    margin: 1rem 0;
   }
 }
 
@@ -172,7 +176,7 @@ ul {
     white-space: nowrap;
   }
 
-  .gpg {
+  .pgp {
     position: absolute;
     left: 50%;
     top: calc(50% + 3rem);
@@ -204,8 +208,8 @@ ul {
     }
   }
 
-  .gpg {
-    opacity: var(--opacity-mid);
+  .pgp {
+    opacity: var(--opacity-low);
     transition: var(--slow-transition);
 
     &:hover,
