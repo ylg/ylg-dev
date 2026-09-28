@@ -64,7 +64,7 @@ main {
 
 a {
   text-decoration: none;
-  color: var(--color-text-low);
+  color: inherit;
 }
 
 ul {
@@ -99,6 +99,7 @@ ul {
 .services {
   font-family: var(--font-text);
   font-size: 1.1rem;
+  transition: color var(--slow-transition), font-size var(--slow-transition);
 }
 
 .lowast {
@@ -159,11 +160,12 @@ ul {
 
   .email-link {
     font-size: 4rem;
-    padding: 3rem;
+    padding: 0.5rem 3rem;
     position: absolute;
     left: 50%;
     top: 50%;
     translate: -50% -50%;
+    will-change: transform;
 
     white-space: nowrap;
   }
@@ -229,7 +231,7 @@ ul {
   }
 
   .pgp {
-    transition: opacity var(--slow-transition);
+    transition: opacity var(--slow-transition), translate var(--slow-transition);
 
     &:hover {
       opacity: var(--opacity-high);
@@ -238,7 +240,7 @@ ul {
 
   .services {
     opacity: var(--opacity-mid);
-    transition: opacity var(--slow-transition);
+    transition: color var(--slow-transition), opacity var(--slow-transition), font-size var(--slow-transition);
 
     &:hover {
       opacity: var(--opacity-high);
