@@ -1,9 +1,23 @@
+@font-face {
+  font-family: "Atkinson Hyperlegible Next Subset";
+  src: url("fonts/atkinson-hyperlegible-next.woff2") format("woff2");
+  font-weight: 200 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono Subset";
+  src: url("fonts/atkinson-hyperlegible-mono.woff2") format("woff2");
+  font-weight: 200 600;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light dark;
 
-  font-family: "SF Mono", "Cascadia Mono", ui-monospace, Menlo, Consolas, monospace;
-  --font-display: "SF Pro Display", "Segoe UI Variable Display", system-ui, ui-sans-serif, sans-serif;
-  --font-text: "SF Pro Text", "Segoe UI Variable Text", system-ui, ui-sans-serif, sans-serif;
+  font-family: "Atkinson Hyperlegible Mono VF", "Atkinson Hyperlegible Mono", "Atkinson Hyperlegible Mono Subset", "SF Mono", "Cascadia Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-display: "Atkinson Hyperlegible Next VF", "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", "Atkinson Hyperlegible Next Subset", "SF Pro Display", "Segoe UI Variable Display", system-ui, ui-sans-serif, sans-serif;
+  --font-text: "Atkinson Hyperlegible Next VF", "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", "Atkinson Hyperlegible Next Subset", "SF Pro Text", "Segoe UI Variable Text", system-ui, ui-sans-serif, sans-serif;
 
   --blood-orange: oklch(0.5 0.15 30);
   --navy: oklch(0.3 0.01 270);
