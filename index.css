@@ -31,6 +31,7 @@
   --color-text-low: var(--navy);
   --color-text-high: var(--blood-orange);
 
+  --opacity-small-low: 0.8;
   --opacity-low: 0.4;
   --opacity-mid: 0.8;
   --opacity-high: 1;
@@ -43,6 +44,8 @@
     --color-background: var(--night);
     --color-text-low: var(--frost);
     --color-text-high: var(--ember-light);
+
+    --opacity-small-low: 0.4;
   }
 }
 
@@ -121,7 +124,7 @@ ul {
 .pgp {
   font-size: 0.75rem;
   margin-top: 0.5rem;
-  opacity: var(--opacity-mid);
+  opacity: var(--opacity-small-low);
   text-align: center;
   -webkit-user-select: all;
   user-select: all;
@@ -223,7 +226,6 @@ ul {
   }
 
   .pgp {
-    opacity: var(--opacity-low);
     transition: var(--slow-transition);
 
     &:hover,
