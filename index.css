@@ -74,7 +74,7 @@ ul {
 }
 
 .service {
-  padding: 0.8rem 0;
+  padding: 0.6rem 0;
 }
 
 .email-link {
@@ -145,7 +145,7 @@ ul {
 
   .services {
     left: 50%;
-    top: calc(50% - 14rem);
+    top: calc(50% - 13rem);
     white-space: nowrap;
   }
 
