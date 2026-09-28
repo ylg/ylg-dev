@@ -17,7 +17,8 @@
   --color-text-low: var(--navy);
   --color-text-high: var(--blood-orange);
 
-  --opacity-low: 0.8;
+  --opacity-low: 0.4;
+  --opacity-mid: 0.8;
   --opacity-high: 1;
 
   --slow-transition: 0.5s ease;
@@ -77,17 +78,27 @@ ul {
   padding: 0.6rem 0;
 }
 
+.lowast {
+  font-size: 2rem;
+  font-weight: 200;
+  position: relative;
+  top: 0.33em;
+  line-height: 1rem;
+}
+
 .email-link {
   font-size: 1.8rem;
-  font-weight: normal;
+  font-weight: 600;
 }
 
 .email-at,
 .email-tld {
   color: var(--color-text-low);
-  font-weight: lighter;
+  opacity: var(--opacity-low);
+  font-weight: 200;
 }
 
+.emphasis,
 .email-hello,
 .email-domain {
   color: var(--color-text-high);
@@ -178,29 +189,23 @@ ul {
 @media (any-hover: hover) {
   .email-link {
 
-    .email-at,
     .email-hello {
       color: var(--color-text-low);
-      opacity: var(--opacity-low);
+      opacity: var(--opacity-mid);
       transition: var(--slow-transition);
     }
 
     &:hover,
     &:focus-visible {
-
-      .email-at,
-      .email-hello {
-        opacity: var(--opacity-high);
-      }
-
       .email-hello {
         color: var(--color-text-high);
+        opacity: var(--opacity-high);
       }
     }
   }
 
   .gpg {
-    opacity: var(--opacity-low);
+    opacity: var(--opacity-mid);
     transition: var(--slow-transition);
 
     &:hover,
@@ -212,7 +217,7 @@ ul {
   .services,
   .links {
     a {
-      opacity: var(--opacity-low);
+      opacity: var(--opacity-mid);
 
       &:hover,
       &:focus-visible {
@@ -220,6 +225,10 @@ ul {
       }
     }
   }
+  .emphasis {
+    color: var(--color-text-low);
+  }
+
   .services ul:hover .emphasis,
   .link:hover .emphasis,
   .link a:focus-visible .emphasis {
@@ -227,7 +236,7 @@ ul {
   }
 
   .services {
-    opacity: var(--opacity-low);
+    opacity: var(--opacity-mid);
 
     &:hover {
       opacity: var(--opacity-high);
